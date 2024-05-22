@@ -18,8 +18,6 @@ function App() {
     queryKey: ['image-gallery', queryWord, currentPage],
     queryFn: () => getImages(queryWord, currentPage),
     onSuccess: (imageGallery) => {
-      // console.log(imageGallery)
-      // console.log(imageGallery.totalHits)
       // Dodaje nowe obrazy do istniejącej kolekcji obrazków
       setAllImages((prevImages) => [...prevImages, ...imageGallery.hits]);
       setTotalHits(imageGallery.totalHits);
@@ -30,14 +28,12 @@ function App() {
 
   const handleSearch = (value) => {
     setQueryWord(value);
-    // console.log(value)
     setCurrentPage(1); // Resetowanie numeru strony przy każdym nowym wyszukiwaniu
     setAllImages([]);
   };
 
   const handleLoadMore = () => {
     setCurrentPage(prevPageCount => prevPageCount + 1);
-    // console.log(currentPage)
   };
 
   return (
